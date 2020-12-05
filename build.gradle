@@ -1,0 +1,22 @@
+ext {
+    appVersion = '1.0.0-SNAPSHOT'
+}
+
+buildscript {
+	
+    dependencies {
+     
+    }
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    
+   
+}
+
+allprojects {
+    group = 'ec.com.cs.rrhh'
+    version = "${appVersion}"
+}
