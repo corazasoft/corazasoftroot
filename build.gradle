@@ -2,21 +2,39 @@ ext {
     appVersion = '1.0.0-SNAPSHOT'
 }
 
-buildscript {
-	
-    dependencies {
-     
-    }
-}
-
-
-subprojects {
-    apply plugin: 'java'
-    
-   
+repositories {
+	mavenCentral()
 }
 
 allprojects {
     group = 'ec.com.cs.rrhh'
     version = "${appVersion}"
 }
+
+subprojects {
+
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	
+	repositories {
+    	mavenCentral()
+	}
+
+	sourceCompatibility = '1.8'
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-actuator'
+		implementation 'org.springframework.boot:spring-boot-starter-webflux'
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		}
+		testImplementation 'io.projectreactor:reactor-test'
+	}
+   
+}
+
+bootJar {
+enabled = false
+}
+
